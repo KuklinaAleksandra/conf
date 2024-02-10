@@ -1,0 +1,36 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Обявления</title>
+</head>
+
+<?php include 'header.php'; ?>
+
+
+<div class="container" style="min-height: calc(100vh - 40px)">
+    <div style="padding-top:1rem">
+        <h2 class="text-center mt-2" style="font-weight:bold; color:#336DB3">
+            <p>LXVII Международнаяконференция</p>
+            <p>Актуальныепроблемыпрочности</p>
+            <p>АПП-2024</p>
+            <p>2 – 5 апреля 2024 г. Екатеринбург</p>
+        </h2>
+    </div>
+    <h2 class="text-center"style="font-weight:bold;padding-top:1rem;padding-bottom:1rem">Объявления</h2>
+    <div class="container text-center">
+        <a href="files/appFile1.pdf">Первоеинформационноесообщение</a>
+    </div>
+    <div class="container text-center">
+        <a href="files/appFile2.pdf">Второеинформационноесообщение</a>
+    </div>
+    <div class="container text-center">
+        <a href="files/3-еинформационноесообщение.pdf">Третьеинформационноесообщение</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById("header").children[0].children[1].children[4].children[0].style.fontWeight="bold"
+</script>
+
+<?php include 'footer.php'; ?>
