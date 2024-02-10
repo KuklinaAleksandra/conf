@@ -1,0 +1,77 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Участники</title>
+    <link rel="icon" href="icon_path" type="image/icon type">
+</head>
+<?php 
+   
+    // Create connection
+    $conn = new mysqli($servername, $username, $password,$db);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    $stmt = $conn->prepare("SELECT * FROM conf_user where show_user_prem=1 ORDER BY CONCAT(last_name, ' ', first_name, ' ',middle_name) asc ");
+    $stmt->execute();
+    $userArray=$stmt->get_result();
+    $stmt->close();
+    $conn->close();
+?>
+<?php $count=1;?>
+<?php include 'header.php'; ?>
+
+
+    <div class="container pb-5 mb-5 mt-5 element" style="min-height: calc(100vh - 40px)">
+        <div style="padding-top:1rem">
+            <h2 class="text-center mt-2" style="font-weight:bold; color:#336DB3">
+                <p>LXVII Международнаяконференция</p>
+                <p>Актуальныепроблемыпрочности</p>
+                <p>АПП-2024</p>
+                <p>2 – 5 апреля 2024 г. Екатеринбург</p>
+            </h2>
+        </div>
+        <h2 class="text-center"style="font-weight:bold;padding-top:1rem;padding-bottom:1rem">Участники</h2>
+        <div class=" style-1 mb-3">
+            <div class=" pt-3">
+                <div class="table-responsive bg-white mw-admin-users-manage-table">
+                        <table cellspacing="0" cellpadding="0" class="table table-hover m-0">
+                            <tbody>
+                                <tr>
+                                    <th>№</th>
+                                    <th>ФИО</th>
+                                    <th>Организация(ВУЗ)</th>
+                                    <th>Должность</th>
+                                    <th>Названиедоклада</th>
+                                    <th>Экспертноезаключение</th>
+                                    <th>Тезисы</th>
+                                    
+                                    
+                                </tr>
+                                <?php foreach ($userArray as $user):?>
+                                    <tr>
+                                        <td><?php echo $count; $count++;?></td>
+                                        <td><?php echo ($user['last_name']." ".$user['first_name']." ".$user['middle_name'])?></td>
+                                        <td><?php echo $user['user_institute']?></td>
+                                        <td><?php echo $user['user_position']?></td>
+                                        <td><?php echo $user['user_pres_name']?></td>
+                                        <td><input class="form-check-input" type="checkbox" name="expert_op_recived" id="expert_op_recived" <?php if ($user['expert_op_recived']==1){echo "checked";}?> disabled="disabled"></td>
+                                        <td><input class="form-check-input" type="checkbox" name="tesis_recived" id="tesis_recived" <?php if ($user['tesis_recived']==1){echo "checked";}?> disabled="disabled"></td>
+                                        
+                                    </tr>
+                                    <?php endforeach ;?>
+                            
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+<script>
+    document.getElementById("header").children[0].children[2].children[2].children[0].style.fontWeight="bold"
+</script>
+<?php include 'footer.php'; ?>
